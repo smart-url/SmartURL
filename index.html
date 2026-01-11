@@ -4,86 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO & AdSense Meta Tags -->
-    <title>SmartURL – Professional URL Shortener & Developer API</title>
-    <meta name="description" content="Shorten, track and manage your links with SmartURL. A fast, secure, and free link shortener with a powerful API for developers.">
-    <meta name="keywords" content="smart url shortener, free url shortener, api link shortener, secure links, custom url">
-    <meta name="author" content="SmartURL">
-
-    <!-- Stylesheets -->
+    <!-- SEO & Meta Tags -->
+    <title>SmartURL | Professional URL Shortener & API</title>
+    <meta name="description" content="Shorten your long links instantly with SmartURL. Secure, fast, and 100% free with a custom developer API.">
+    <meta name="keywords" content="smart url shortener, free url shortener, link management, secure link shortener, api url shortener">
+    
+    <!-- Stylesheets & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
 
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
-        .gradient-mesh {
+        .hero-gradient {
             background-color: #4f46e5;
             background-image: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
                               radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
                               radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
         }
-        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .loader { border-top-color: #6366f1; animation: spinner 1.5s linear infinite; }
+        .loader { border-top-color: #6366f1; animation: spinner 0.8s linear infinite; }
         @keyframes spinner { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .animate-fade { animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
 
-    <!-- Redirection Overlay (Sirf tab dikhega jab link pe click hoga) -->
+    <!-- Loading/Redirecting Overlay -->
     <div id="redirectOverlay" class="hidden fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center">
-        <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4"></div>
-        <h2 class="text-xl font-bold text-slate-800">Redirecting you...</h2>
+        <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-100 h-14 w-14 mb-4"></div>
+        <h2 class="text-2xl font-bold text-slate-800 tracking-tight">Redirecting...</h2>
         <p class="text-slate-500">Fastening your connection via SmartURL</p>
     </div>
 
     <!-- Navigation -->
     <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center gap-2">
-                <div class="bg-indigo-600 p-2 rounded-xl shadow-lg shadow-indigo-200">
-                    <i data-lucide="link-2" class="text-white w-6 h-6"></i>
+                <div class="bg-indigo-600 p-2 rounded-xl shadow-lg">
+                    <i data-lucide="zap" class="text-white w-6 h-6"></i>
                 </div>
                 <span class="text-2xl font-extrabold tracking-tight">Smart<span class="text-indigo-600">URL</span></span>
             </div>
             <div class="hidden md:flex gap-8 font-semibold text-slate-600">
                 <a href="#features" class="hover:text-indigo-600 transition">Features</a>
-                <a href="#api-docs" class="hover:text-indigo-600 transition">API Documentation</a>
-                <a href="#legal" class="hover:text-indigo-600 transition">Privacy</a>
+                <a href="#api" class="hover:text-indigo-600 transition">API Docs</a>
+                <a href="#privacy" class="hover:text-indigo-600 transition">Privacy</a>
             </div>
-            <a href="https://github.com/" class="bg-slate-900 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-indigo-600 transition">Get Started</a>
+            <a href="#shorten" class="bg-slate-900 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-indigo-600 transition shadow-lg">Start Free</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="gradient-mesh py-24 px-4 text-white">
-        <div class="max-w-4xl mx-auto text-center">
-            <span class="inline-block py-1 px-3 rounded-full bg-indigo-500/30 text-indigo-200 text-xs font-bold tracking-widest uppercase mb-6 border border-indigo-400/20">
-                The New Standard for Links
-            </span>
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-8 leading-tight">Shorten Your Links <br>& Own Your Data</h1>
-            <p class="text-lg md:text-xl opacity-80 mb-12 font-light">Stop using 3rd party brands. Use SmartURL's free API to create custom branded links for your business or blog.</p>
+    <header id="shorten" class="hero-gradient py-28 px-6 text-white text-center">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-8 leading-tight animate-fade">Control Every Link <br>With Your Own API.</h1>
+            <p class="text-lg md:text-xl opacity-80 mb-12 font-light max-w-2xl mx-auto">Stop using generic shorteners. Create professional links using your own private database and developer API.</p>
             
             <!-- URL Input Box -->
-            <div class="bg-white p-2 rounded-2xl shadow-2xl flex flex-col md:flex-row gap-2 max-w-3xl mx-auto">
+            <div class="bg-white p-2 rounded-3xl shadow-2xl flex flex-col md:flex-row gap-2 max-w-3xl mx-auto">
                 <div class="flex-grow flex items-center px-4">
-                    <i data-lucide="globe" class="text-slate-400 w-5 h-5"></i>
-                    <input type="url" id="longUrl" placeholder="Enter long URL (https://...)" 
+                    <i data-lucide="link" class="text-slate-400 w-5 h-5"></i>
+                    <input type="url" id="longUrl" placeholder="Paste your long link here..." 
                            class="w-full p-4 bg-transparent text-slate-900 focus:outline-none text-lg">
                 </div>
-                <button onclick="shortenNow()" id="shortenBtn" class="bg-indigo-600 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-slate-900 transition-all flex items-center justify-center gap-2">
-                    Shorten Link
+                <button onclick="shortenNow()" id="shortenBtn" class="bg-indigo-600 text-white px-10 py-4 rounded-2xl font-bold text-lg hover:bg-slate-900 transition-all flex items-center justify-center gap-2 shadow-lg">
+                    Shorten Now
                 </button>
             </div>
 
             <!-- Result Area -->
-            <div id="resultCard" class="hidden mt-8 max-w-lg mx-auto bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl animate-fade-in text-left">
-                <div class="flex justify-between items-center mb-2 text-indigo-200 text-xs font-bold uppercase tracking-widest">
-                    <span>Success! Your short link is ready</span>
-                </div>
-                <div class="flex items-center gap-2 bg-white rounded-xl p-2">
-                    <span id="finalLink" class="flex-grow text-indigo-900 font-bold px-4 truncate"></span>
-                    <button onclick="copyToClipboard()" class="bg-indigo-600 text-white px-5 py-2.5 rounded-lg hover:bg-slate-900 transition flex items-center gap-2">
+            <div id="resultCard" class="hidden mt-10 max-w-lg mx-auto bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-3xl animate-fade text-left">
+                <p class="text-indigo-200 text-xs font-bold uppercase tracking-widest mb-3 text-center">Your Smart link is ready!</p>
+                <div class="flex items-center gap-2 bg-white rounded-2xl p-2 shadow-inner">
+                    <span id="finalLink" class="flex-grow text-indigo-900 font-bold px-4 truncate text-md"></span>
+                    <button onclick="copyToClipboard()" class="bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-slate-900 transition flex items-center gap-2 font-bold">
                         <i data-lucide="copy" class="w-4 h-4"></i> Copy
                     </button>
                 </div>
@@ -91,128 +86,89 @@
         </div>
     </header>
 
-    <!-- Ads Placeholder -->
-    <div class="max-w-6xl mx-auto my-16 px-4">
-        <div class="border-2 border-dashed border-slate-200 rounded-3xl p-8 text-center text-slate-400">
-            <p class="text-xs uppercase tracking-[0.3em] mb-4">Advertisement Space (Google AdSense)</p>
-            <div class="h-32 flex items-center justify-center italic">Place your AdSense unit code here</div>
-        </div>
-    </div>
-
     <!-- Features Section -->
-    <section id="features" class="py-24 px-4 max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl font-extrabold text-slate-900">Built for Professionals</h2>
-            <p class="text-slate-500 mt-4">Why SmartURL is better than other services</p>
-        </div>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="p-8 bg-white border border-slate-100 rounded-[2rem] shadow-sm hover:shadow-xl transition-all">
-                <div class="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center mb-6"><i data-lucide="zap" class="text-indigo-600"></i></div>
-                <h3 class="text-xl font-bold mb-3">Instant Redirection</h3>
-                <p class="text-slate-500 leading-relaxed text-sm">Our API ensures your users are redirected in milliseconds without any annoying ads or countdowns.</p>
+    <section id="features" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-3 gap-12">
+            <div class="p-10 bg-white border border-slate-100 rounded-[2.5rem] shadow-sm hover:shadow-2xl transition-all group">
+                <div class="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition"><i data-lucide="shield-check" class="text-indigo-600"></i></div>
+                <h3 class="text-2xl font-bold mb-4">100% Private</h3>
+                <p class="text-slate-500 leading-relaxed">Unlike TinyURL, your data is stored in your private Google Sheet. No one tracks you.</p>
             </div>
-            <div class="p-8 bg-white border border-slate-100 rounded-[2rem] shadow-sm hover:shadow-xl transition-all">
-                <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-6"><i data-lucide="database" class="text-blue-600"></i></div>
-                <h3 class="text-xl font-bold mb-3">100% Data Control</h3>
-                <p class="text-slate-500 leading-relaxed text-sm">All links are stored in your private Google Sheet database. No one can see your link history except you.</p>
+            <div class="p-10 bg-white border border-slate-100 rounded-[2.5rem] shadow-sm hover:shadow-2xl transition-all group">
+                <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition"><i data-lucide="zap" class="text-blue-600"></i></div>
+                <h3 class="text-2xl font-bold mb-4">Fast Redirects</h3>
+                <p class="text-slate-500 leading-relaxed">Our advanced redirection logic ensures your users reach the destination in milliseconds.</p>
             </div>
-            <div class="p-8 bg-white border border-slate-100 rounded-[2rem] shadow-sm hover:shadow-xl transition-all">
-                <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mb-6"><i data-lucide="code-2" class="text-purple-600"></i></div>
-                <h3 class="text-xl font-bold mb-3">Developer API</h3>
-                <p class="text-slate-500 leading-relaxed text-sm">Use our simple POST/GET endpoints to shorten links from your own software or website apps.</p>
+            <div class="p-10 bg-white border border-slate-100 rounded-[2.5rem] shadow-sm hover:shadow-2xl transition-all group">
+                <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition"><i data-lucide="code" class="text-purple-600"></i></div>
+                <h3 class="text-2xl font-bold mb-4">Developer API</h3>
+                <p class="text-slate-500 leading-relaxed">Easily integrate our link shortening technology into your own apps and websites.</p>
             </div>
         </div>
     </section>
 
-    <!-- API Documentation Section -->
-    <section id="api-docs" class="bg-slate-900 py-24 px-4 text-white">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl font-bold mb-10 flex items-center gap-3">
-                <i data-lucide="terminal" class="text-indigo-400"></i> Integration Guide (API)
-            </h2>
-            <div class="grid md:grid-cols-2 gap-10">
-                <div>
-                    <h4 class="text-indigo-400 font-bold mb-4 uppercase text-xs tracking-widest">How to Shorten</h4>
-                    <p class="text-slate-400 mb-6 text-sm">Send a POST request with a JSON body containing your target URL.</p>
-                    <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 font-mono text-xs">
-                        <span class="text-green-400">POST</span> /smarturl-api<br>
-                        { <br>
-                        &nbsp;&nbsp;"url": "https://example.com" <br>
-                        }
-                    </div>
-                </div>
-                <div>
-                    <h4 class="text-indigo-400 font-bold mb-4 uppercase text-xs tracking-widest">The Response</h4>
-                    <p class="text-slate-400 mb-6 text-sm">You will receive a unique short code back as a JSON object.</p>
-                    <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 font-mono text-xs">
-                        { <br>
-                        &nbsp;&nbsp;"shortUrl": "a7b9x2" <br>
-                        }
-                    </div>
-                </div>
+    <!-- API Documentation -->
+    <section id="api" class="bg-slate-900 py-24 px-6 text-white overflow-hidden">
+        <div class="max-w-4xl mx-auto relative">
+            <h2 class="text-4xl font-extrabold mb-10">SmartURL Developer API</h2>
+            <p class="text-slate-400 mb-8">Want to use our backend for your own app? Send a POST request to our endpoint.</p>
+            <div class="bg-slate-800 p-8 rounded-3xl border border-slate-700 font-mono text-sm leading-relaxed overflow-x-auto shadow-2xl">
+                <span class="text-indigo-400">// API Endpoint</span><br>
+                <span class="text-green-400">POST</span> /smarturl/shorten<br><br>
+                <span class="text-indigo-400">// Request Body</span><br>
+                { "url": "https://your-link.com" }<br><br>
+                <span class="text-indigo-400">// Response</span><br>
+                { "shortUrl": "ab123" }
             </div>
         </div>
     </section>
 
-    <!-- Legal Section -->
-    <section id="legal" class="py-24 px-4 max-w-5xl mx-auto">
+    <!-- Privacy & Legal -->
+    <section id="privacy" class="py-24 px-6 max-w-5xl mx-auto">
         <div class="grid md:grid-cols-2 gap-20">
             <div>
-                <h3 class="text-xl font-bold mb-6">Privacy Policy</h3>
-                <p class="text-slate-500 text-sm leading-relaxed mb-4">SmartURL does not sell your link data to third parties. We use cookies only for service optimization and Google AdSense advertisement purposes. Your links are stored securely in an encrypted cloud database.</p>
+                <h3 class="text-2xl font-bold mb-6">Privacy First Policy</h3>
+                <p class="text-slate-500 leading-relaxed">SmartURL does not store user browser data. Our ads are Google AdSense compliant. We only use essential cookies to provide you with the best experience.</p>
             </div>
             <div>
-                <h3 class="text-xl font-bold mb-6">Terms of Service</h3>
-                <p class="text-slate-500 text-sm leading-relaxed">By using this API, you agree not to use SmartURL for illegal, phishing, or malware distribution. Links found violating these terms will be banned from our global network.</p>
+                <h3 class="text-2xl font-bold mb-6">Terms of Usage</h3>
+                <p class="text-slate-500 leading-relaxed">Use of our service for spamming, phishing, or malware is strictly prohibited. We reserve the right to ban links that violate our safety policies.</p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 py-12 px-4">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <p class="text-slate-400 text-sm italic">Designed for High-Performance Links</p>
-            <div class="flex items-center gap-2">
-                <i data-lucide="link-2" class="text-indigo-600"></i>
-                <span class="font-bold text-xl">SmartURL</span>
+    <footer class="bg-white border-t border-slate-200 py-16 text-center">
+        <div class="flex items-center justify-center gap-2 mb-8">
+            <div class="bg-indigo-600 p-1.5 rounded-lg">
+                <i data-lucide="zap" class="text-white w-5 h-5"></i>
             </div>
-            <p class="text-slate-400 text-sm">&copy; 2026 SmartURL. All rights reserved.</p>
+            <span class="text-2xl font-extrabold">SmartURL</span>
         </div>
+        <p class="text-slate-400 text-sm">© 2026 SmartURL Link Management. All rights reserved.</p>
     </footer>
 
+    <!-- JavaScript Logic -->
     <script>
-        // Initialize Icons
         lucide.createIcons();
 
-        // 1. AAPKI API KEY (Google Web App URL)
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyIx52gbvj7EKU1JOJ27gLx8vvM_yosox3sc0rGNDwl7iNddjZuyToQn8JywUA6xL__8A/exec';
+        // Updated API URL
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwRRbnqadeW4gd-Olppa3pAKvHJ2s-XXoXSvtizF2rXYmRK205-c2Uw8cRzozeohwg07g/exec';
 
-        // 2. LOGIC FOR REDIRECTION (Checking if ?id= is in URL)
-        window.onload = async function() {
+        // REDIRECTION SYSTEM
+        window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const shortCode = urlParams.get('id');
 
             if (shortCode) {
-                // Show redirection screen
+                // Show redirection overlay
                 document.getElementById('redirectOverlay').classList.remove('hidden');
-                
-                try {
-                    // Fetch real URL from your API
-                    const response = await fetch(`${SCRIPT_URL}?id=${shortCode}`);
-                    const htmlContent = await response.text();
-                    
-                    // The Google Script returns HTML with a redirect script
-                    document.open();
-                    document.write(htmlContent);
-                    document.close();
-                } catch (e) {
-                    alert("Error redirecting. The link might be expired.");
-                    document.getElementById('redirectOverlay').classList.add('hidden');
-                }
+                // Instant redirect to Apps Script (which handles the real URL)
+                window.location.replace(SCRIPT_URL + "?id=" + shortCode);
             }
         };
 
-        // 3. LOGIC FOR SHORTENING LINK
+        // SHORTEN SYSTEM
         async function shortenNow() {
             const longUrl = document.getElementById('longUrl').value;
             const btn = document.getElementById('shortenBtn');
@@ -220,16 +176,15 @@
             const finalLink = document.getElementById('finalLink');
 
             if (!longUrl || !longUrl.startsWith('http')) {
-                alert("Please enter a valid URL starting with http:// or https://");
+                alert("Please enter a valid URL (starting with http:// or https://)");
                 return;
             }
 
-            // UI Update
+            // UI State Loading
             btn.disabled = true;
-            btn.innerHTML = `<span class="loader ease-linear rounded-full border-2 border-t-2 border-white h-5 w-5 mr-2"></span> Processing...`;
+            btn.innerHTML = `<span class="loader rounded-full border-2 border-t-2 border-white h-5 w-5 mr-3"></span> Shortening...`;
 
             try {
-                // Calling your API
                 const response = await fetch(SCRIPT_URL, {
                     method: 'POST',
                     body: JSON.stringify({ url: longUrl })
@@ -237,27 +192,27 @@
                 
                 const data = await response.json();
                 
-                // Constructing the final link
-                const currentBaseUrl = window.location.origin + window.location.pathname;
-                const shortUrl = `${currentBaseUrl}?id=${data.shortUrl}`;
+                // Build link using current domain
+                const currentPath = window.location.origin + window.location.pathname;
+                const finalGeneratedUrl = currentPath + "?id=" + data.shortUrl;
                 
-                finalLink.innerText = shortUrl;
+                finalLink.innerText = finalGeneratedUrl;
                 resultCard.classList.remove('hidden');
             } catch (error) {
+                alert("Connection Error! Please make sure your Google Script deployment is set to 'Anyone'.");
                 console.error(error);
-                alert("Something went wrong with the API connection.");
             } finally {
                 btn.disabled = false;
-                btn.innerText = "Shorten Link";
+                btn.innerHTML = `Shorten Now`;
                 lucide.createIcons();
             }
         }
 
-        // 4. COPY TO CLIPBOARD
+        // COPY SYSTEM
         function copyToClipboard() {
-            const linkText = document.getElementById('finalLink').innerText;
-            navigator.clipboard.writeText(linkText).then(() => {
-                alert("Short link copied to clipboard!");
+            const text = document.getElementById('finalLink').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Link copied to clipboard!");
             });
         }
     </script>
